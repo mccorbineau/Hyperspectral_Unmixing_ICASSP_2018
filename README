@@ -1,0 +1,58 @@
+Hyperspectral_Unmixing_PIPA
+
+***************************************************************
+* author: Marie-Caroline Corbineau    		              *
+* institution: CVN, CentraleSupélec, Université Paris-Saclay  *
+* date: Thursday, July 5th 2018   	                      *
+* License: GNU General Public License v3.0                    *
+***************************************************************
+
+*****************************************************
+* RECOMMENDATIONS:                                  *
+* This code is designed to work with                *
+* Matlab R2016b (or earlier versions)               *
+*****************************************************
+
+------------------------------------------------------------------------------------
+DESCRIPTION:
+
+This code allows to perform unmixing on hyperspectral data.
+The inverse problem is formulated as follows:        
+                        minimize          0.5*||Y-S*X||_2^2 + reg*||W*X||_{1,detail}
+                       subject to         for every pixel p, sum_i(X_{i,p})<=1
+                                          X >=0
+Where: Y is the data
+       X is the abundance map (proportion of every material in every pixel)
+       S is the library of the spectral signatures of the different materials for various spectral bands
+       reg is a regularization parameter
+       W is an orthogonal wavelet transform
+       ||W.||_{1,detail} is the l1 norm of the detail wavelet coefficients 
+       X_{i,p} is the abundance of material i in pixel p
+
+The minimization process is based on a Proximal Interior Point Algorithm (PIPA).
+
+This toolbox consists of 3 subfolders:
+1) data: contains data for the Urban dataset
+2) functions: contains the hyperspectral unmixing programs
+3) TOOLBOX_DWTRed_Frame: wavelet toolbox provided by Caroline Chaux (more information within this folder)
+
+Information about the data:
+The Urban dataset is available online on http://www.escience.cn/people/feiyunZHU/Dataset_GT.html
+
+------------------------------------------------------------------------------------
+SPECIFICATIONS for using Hyperspectral_Unmixing_PIPA:
+
+A demo file is provided :
+* demo.m runs the hyperspectral unmixing application for the Urban dataset. 
+
+------------------------------------------------------------------------------------
+RELATED PUBLICATIONS:
+
+# M.-C. Corbineau, E. Chouzenoux, and J.-C. Pesquet. PIPA: a new proximal interior point algorithm 
+  for large-scale convex optimization. In Proceedings of the 43rd IEEE International Conference on 
+  Acoustics, Speech and Signal processing (ICASSP 2018), Calgary, Canada, 15-20 April 2018.
+
+# M.-C. Corbineau, E. Chouzenoux, and J.-C. Pesquet. Geometry-texture decomposition/reconstruction 
+  using a proximal interior point algorithm. In Proceedings of the 10th IEEE Sensor Array and 
+  Multichannel Signal Processing Workshop (SAM 2018), Sheffield, UK, 8-11 July 2018.
+------------------------------------------------------------------------------------
